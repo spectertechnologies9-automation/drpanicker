@@ -28,7 +28,24 @@
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__dpReady)document.documentElement.classList.add("reveal-off")},2500);</script>
 <script src="assets/js/main.js" defer></script>
-</head>
+<script>
+(function () {
+  var p = location.pathname.toLowerCase();
+  if (p.indexOf("uttarahalli") === -1) return;
+  var rules = [
+    [/scal|clean/, "clean"], [/aligner|invisible/, "aligners"], [/brace/, "braces"],
+    [/implant/, "implant"], [/crown|bridge/, "crown"], [/full-?mouth|rehab/, "fullmouth"],
+    [/denture/, "dentures"], [/fill/, "filling"], [/root|rct|endo/, "rct"],
+    [/whiten|bleach/, "whitening"], [/veneer|bonding/, "veneer"], [/smile/, "smile"],
+    [/gum|perio|gingiv/, "gums"], [/wisdom|extract/, "wisdom"], [/emergenc|urgent|pain/, "emergency"],
+    [/child|kid|paed|pedi/, "kids"]
+  ];
+  for (var i = 0; i < rules.length; i++) {
+    if (rules[i][0].test(p)) { location.replace("treatments.html#t-" + rules[i][1]); return; }
+  }
+  location.replace("treatments.html");
+})();
+</script></head>
 <body>
 <div class="progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
